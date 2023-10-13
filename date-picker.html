@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Date Range Picker</title>
+<link rel="stylesheet" href="https://mui.com/x/data-grid/latest/dist/grid-data-grid.min.css" />
+<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/@mui/x-data-grid@latest/dist/grid-data-grid.min.js" crossorigin></script>
+<script src="https://unpkg.com/@emotion/react@latest/dist/emotion-react.umd.min.js" crossorigin></script>
+<script src="https://unpkg.com/@emotion/styled@latest/dist/emotion-styled.umd.min.js" crossorigin></script>
+</head>
+<body>
+<div id="date-picker-container"></div>
+<script type="text/javascript">
+  const { DateRangePicker } = window['@mui/x-data-grid'];
+  const { styled, ThemeProvider, createTheme } = window['@mui/system'];
+  const { Box } = window['@mui/material'];
+
+  function DateRangePickerDemo() {
+    const [value, setValue] = React.useState([null, null]);
+
+    return (
+      <ThemeProvider theme={createTheme()}>
+        <Box>
+          <DateRangePicker
+            startText="Start"
+            endText="End"
+            value={value}
+            onChange={(newValue) => setValue(newValue)}
+            renderInput={(startProps, endProps) => (
+              <>
+                <input {...startProps} placeholder="Start date" />
+                <Box sx={{ mx: 2 }}> to </Box>
+                <input {...endProps} placeholder="End date" />
+              </>
+            )}
+          />
+        </Box>
+      </ThemeProvider>
+    );
+  }
+
+  ReactDOM.render(<DateRangePickerDemo />, document.getElementById('date-picker-container'));
+</script>
+</body>
+</html>
